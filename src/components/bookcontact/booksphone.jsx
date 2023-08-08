@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from 'components/FormForContact/form';
 import css from './booksphone.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class BookPhones extends React.Component {
   state = {
     contacts: [
@@ -28,7 +30,15 @@ class BookPhones extends React.Component {
     );
 
     if (existingContact) {
-      return alert('already added');
+       toast.error('Already Added.', {
+         position: 'top-right',
+         autoClose: 3000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+       });
+      return 
     }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, data],
