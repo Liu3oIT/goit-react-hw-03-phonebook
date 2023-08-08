@@ -24,7 +24,7 @@ class BookPhones extends React.Component {
   }
   FormSubmit = data => {
     const existingContact = this.state.contacts.find(
-      el => el.name === data.name
+      el => el.name.toLowerCase() === data.name.toLowerCase()
     );
 
     if (existingContact) {
@@ -35,11 +35,11 @@ class BookPhones extends React.Component {
     }));
   };
 
-  deleteContact = number => {
+  deleteContact = id => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.number !== number),
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
-    this.localStoregSave();
+    
   };
 
   handleFindContact = event => {
@@ -87,7 +87,7 @@ class BookPhones extends React.Component {
                 <button
                   className={css.button_delet_contact}
                   type="button"
-                  onClick={() => this.deleteContact(contact.number)}
+                  onClick={() => this.deleteContact(contact.id)}
                 >
                   Delete
                 </button>
